@@ -44,3 +44,21 @@ class DoublyLinkedList:
                     self.tail = current_node.prev
                 return
             current_node = current_node.next
+
+    def print_list(self):
+        current_node = self.head
+        while current_node:
+            print(current_node.data, end=" ")
+            current_node = current_node.next
+        print()
+
+
+class CursorDLL(DoublyLinkedList):
+    def __init__(self):
+        super().__init__()
+        self.cursor = self.head
+
+    def move_cursor_forward(self):
+        if self.cursor is None or self.cursor.next is None:
+            return
+        self.cursor = self.cursor.next
