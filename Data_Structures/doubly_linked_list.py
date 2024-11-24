@@ -62,3 +62,28 @@ class CursorDLL(DoublyLinkedList):
         if self.cursor is None or self.cursor.next is None:
             return
         self.cursor = self.cursor.next
+
+    def move_cursor_backward(self):
+        if self.cursor is None or self.cursor.prev is None:
+            return
+        self.cursor = self.cursor.prev
+
+    def print_list_with_cursor(self):
+        current_node = self.head
+        while current_node:
+            if current_node == self.cursor:
+                print("[{}]".format(current_node.data), end=" ")
+            else:
+                print(current_node.data, end=" ")
+            current_node = current_node.next
+        print()
+
+    def append(self, data):
+        super().append(data)
+        if self.cursor is None:
+            self.cursor = self.tail
+
+    def prepend(self, data):
+        super().prepend(data)
+        if self.cursor is None:
+            self.cursor = self.head
